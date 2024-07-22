@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 
 st.set_page_config(
-    page_title="Product Scheduler",
+    page_title="Lyzr Screenshot to Code",
     layout="centered",  # or "wide"
     initial_sidebar_state="auto",
     page_icon="lyzr-logo-cut.png",
@@ -28,15 +28,17 @@ image = Image.open("lyzr-logo.png")
 st.image(image, width=150)
 
 # App title and introduction
-st.title("Product Scheduler👷‍")
-st.markdown("## Welcome to the Product Scheduler!")
-st.markdown("In this App you need to Upload Nit sketch of your product. This app will gives you Project Planning,Initiation and Schedule Development")
-
-load_dotenv()
-api = os.getenv("OPENAI_API_KEY")
+st.title("Lyzr Screenshot to Code")
+st.markdown("## Welcome to the Lyzr Screenshot to Code!")
+st.markdown("In this App you need to Upload Landing Page Screenshot. This app will Generated code to build this landing page")
 
 
-openai_4o_model = GPTVISION(api_key=api,parameters={})
+api = st.sidebar.text_input("Enter Your OPENAI API KEY HERE", type="password")
+
+if api:
+    openai_4o_model = GPTVISION(api_key=api,parameters={})
+else:
+    st.sidebar.error("Please Enter Your OPENAI API KEY")
 
 data = "data"
 os.makedirs(data, exist_ok=True)
